@@ -1,4 +1,6 @@
-# [Project title]
+# Quarantine Gate Desk (fictional BAE 554 agent)
+
+> **DRAFT STATUS (2026-11-24):** working implementation and tests only. The graded Dell evaluation runs, failure analysis, November 30 robot-stack notes and December 2 peer results are **not yet done**; the report sections below are still the course template. All people, zones, tests and rules here are classroom fiction.
 
 **BAE 554 Final Project · Fall 2026 · [Your name]**
 
