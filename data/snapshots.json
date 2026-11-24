@@ -1,0 +1,27 @@
+{
+  "version": "v1",
+  "label": "Separately prepared authoritative FICTIONAL snapshots for the water-hold timeline (REQ-120, group GRP-T). The agent never writes these.",
+  "snapshots": {
+    "t0_baseline": {
+      "title": "Clear baseline: no confirmed Willowbank alert yet",
+      "remove": {"water.alerts": ["WA-07"]}
+    },
+    "t1_alert": {
+      "title": "Alert WA-07 confirmed: both members get personal holds",
+      "remove": {}
+    },
+    "t2_partial": {
+      "title": "One member cleared (CL-030); the other still uncleared, so the journey stays held",
+      "add": {"clearances.clearances": [
+        {"clearance_id": "CL-030", "person_id": "P-030", "alert_id": "WA-07", "result": "CLEAR", "sampled_at": "2026-11-19T12:00:00Z", "issued_at": "2026-11-20T08:30:00Z", "issued_by": "OFF-11", "signature_status": "VERIFIED"}
+      ]}
+    },
+    "t3_complete": {
+      "title": "Both members cleared after their last exposure; other rules pass, so APPROVE (eligible for human authorization)",
+      "add": {"clearances.clearances": [
+        {"clearance_id": "CL-030", "person_id": "P-030", "alert_id": "WA-07", "result": "CLEAR", "sampled_at": "2026-11-19T12:00:00Z", "issued_at": "2026-11-20T08:30:00Z", "issued_by": "OFF-11", "signature_status": "VERIFIED"},
+        {"clearance_id": "CL-031", "person_id": "P-031", "alert_id": "WA-07", "result": "CLEAR", "sampled_at": "2026-11-19T12:10:00Z", "issued_at": "2026-11-20T09:15:00Z", "issued_by": "OFF-11", "signature_status": "VERIFIED"}
+      ]}
+    }
+  }
+}

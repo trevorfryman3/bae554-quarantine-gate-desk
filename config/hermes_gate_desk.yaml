@@ -1,0 +1,22 @@
+# Hermes Agent settings for the Quarantine Gate Desk (merge into your Hermes config.yaml).
+# Native Windows: %LOCALAPPDATA%\hermes\   Linux/macOS/WSL2: ~/.hermes/
+# Docs checked 2026-11-24: hermes-agent.nousresearch.com/docs (features/mcp, reference/toolsets-reference,
+# user-guide/features/skills, reference/cli-commands, integrations/providers). No secrets belong in this file.
+
+model:
+  provider: custom
+  base_url: http://localhost:11434/v1   # local Ollama only; never a cloud endpoint
+  default: qwen3.5:4b
+
+mcp_servers:
+  gate_desk:
+    command: python                      # or the full path of the project's Python
+    args: ["<REPO>/tools/mcp_server.py"]
+    tools:
+      include: [find_request, get_request, get_zone_rules, get_person_records, get_area_reports, check_policy]
+      prompts: false
+      resources: false
+
+# Run the agent with ONLY this server's toolset and the skill preloaded:
+#   hermes chat --oneshot --quiet --toolsets mcp-gate_desk --skills quarantine-gate-desk -q "Review REQ-108"
+# Install the skill: copy skill/ to <hermes home>/skills/quarantine-gate-desk/

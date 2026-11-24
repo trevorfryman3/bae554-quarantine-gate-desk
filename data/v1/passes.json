@@ -1,0 +1,22 @@
+{
+  "version": "v1",
+  "label": "FICTIONAL pass registry (authoritative for passes)",
+  "passes": [
+    {"pass_id": "PS-001", "holder_ids": ["P-001"], "issuer": "PASS-OFFICE-1", "gates": ["G1"], "valid_from": "2026-11-19T00:00:00Z", "valid_to": "2026-11-22T00:00:00Z", "status": "ACTIVE"},
+    {"pass_id": "PS-002", "holder_ids": ["P-002"], "issuer": "PASS-OFFICE-1", "gates": ["G5"], "valid_from": "2026-11-19T00:00:00Z", "valid_to": "2026-11-22T00:00:00Z", "status": "ACTIVE"},
+    {"pass_id": "PS-003", "holder_ids": ["P-003", "P-004", "P-005"], "issuer": "PASS-OFFICE-1", "gates": ["G3"], "valid_from": "2026-11-19T00:00:00Z", "valid_to": "2026-11-22T00:00:00Z", "status": "ACTIVE"},
+    {"pass_id": "PS-004", "holder_ids": ["VH-11", "P-006", "P-007"], "issuer": "PASS-OFFICE-1", "gates": ["G1"], "valid_from": "2026-11-19T00:00:00Z", "valid_to": "2026-11-22T00:00:00Z", "status": "ACTIVE"},
+    {"pass_id": "PS-005", "holder_ids": ["P-008"], "issuer": "PASS-OFFICE-1", "gates": ["G2"], "valid_from": "2026-11-16T00:00:00Z", "valid_to": "2026-11-19T23:59:00Z", "status": "ACTIVE"},
+    {"pass_id": "PS-006", "holder_ids": ["P-009"], "issuer": "PASS-OFFICE-1", "gates": ["G1"], "valid_from": "2026-11-19T00:00:00Z", "valid_to": "2026-11-22T00:00:00Z", "status": "ACTIVE"},
+    {"pass_id": "PS-007", "holder_ids": ["P-010"], "issuer": "PASS-OFFICE-1", "gates": ["G4"], "valid_from": "2026-11-19T00:00:00Z", "valid_to": "2026-11-22T00:00:00Z", "status": "ACTIVE"},
+    {"pass_id": "PS-008", "holder_ids": ["P-011", "P-012", "P-013"], "issuer": "PASS-OFFICE-1", "gates": ["G4"], "valid_from": "2026-11-19T00:00:00Z", "valid_to": "2026-11-22T00:00:00Z", "status": "ACTIVE"},
+    {"pass_id": "PS-009", "holder_ids": ["VH-12", "P-014", "P-015", "P-016"], "issuer": "PASS-OFFICE-1", "gates": ["G4"], "valid_from": "2026-11-19T00:00:00Z", "valid_to": "2026-11-22T00:00:00Z", "status": "ACTIVE"},
+    {"pass_id": "PS-010", "holder_ids": ["VH-13", "P-017", "P-018"], "issuer": "PASS-OFFICE-1", "gates": ["G4"], "valid_from": "2026-11-19T00:00:00Z", "valid_to": "2026-11-22T00:00:00Z", "status": "ACTIVE"},
+    {"pass_id": "PS-011", "holder_ids": ["P-019"], "issuer": "PASS-OFFICE-1", "gates": ["G4"], "valid_from": "2026-11-19T00:00:00Z", "valid_to": "2026-11-22T00:00:00Z", "status": "ACTIVE"},
+    {"pass_id": "PS-012", "holder_ids": ["P-020", "P-021", "P-022"], "issuer": "PASS-OFFICE-1", "gates": ["G1"], "valid_from": "2026-11-19T00:00:00Z", "valid_to": "2026-11-22T00:00:00Z", "status": "ACTIVE"},
+    {"pass_id": "PS-013", "holder_ids": ["P-023"], "issuer": "PASS-OFFICE-1", "gates": ["G1"], "valid_from": "2026-11-19T00:00:00Z", "valid_to": "2026-11-22T00:00:00Z", "status": "ACTIVE"},
+    {"pass_id": "PS-014", "holder_ids": ["P-024"], "issuer": "PASS-OFFICE-1", "gates": ["G4"], "valid_from": "2026-11-19T00:00:00Z", "valid_to": "2026-11-22T00:00:00Z", "status": "ACTIVE"},
+    {"pass_id": "PS-015", "holder_ids": ["VH-14", "P-025"], "issuer": "PASS-OFFICE-1", "gates": ["G1"], "valid_from": "2026-11-19T00:00:00Z", "valid_to": "2026-11-22T00:00:00Z", "status": "ACTIVE"},
+    {"pass_id": "PS-020", "holder_ids": ["P-030", "P-031"], "issuer": "PASS-OFFICE-1", "gates": ["G4"], "valid_from": "2026-11-19T00:00:00Z", "valid_to": "2026-11-22T00:00:00Z", "status": "ACTIVE"}
+  ]
+}

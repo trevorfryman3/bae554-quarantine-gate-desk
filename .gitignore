@@ -1,0 +1,25 @@
+# Secrets: never commit these
+.env
+*.env
+*.key
+auth.json
+
+# Model weights and large files
+*.gguf
+*.safetensors
+*.bin
+
+# Python and notebooks
+__pycache__/
+.venv/
+venv/
+.ipynb_checkpoints/
+.DS_Store
+
+# Project additions
+.private*
+config/hermes_config.yaml
+*.db
+*.sqlite
+auth.json
+.pytest_cache/

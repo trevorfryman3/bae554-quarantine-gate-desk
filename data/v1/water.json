@@ -1,0 +1,25 @@
+{
+  "version": "v1",
+  "label": "FICTIONAL water alerts and samples. Units 'zu/L' (zombie units) and limits are invented for class.",
+  "alerts": [
+    {"alert_id": "WA-07", "source_id": "W-3", "zone_id": "Z-W", "status": "ACTIVE", "confirmed": true,
+     "affected_from": "2026-11-17T00:00:00Z", "affected_to": "2026-11-19T00:00:00Z",
+     "issued_by": "CMD-REGIONAL", "issued_at": "2026-11-17T12:00:00Z", "basis_sample_ids": ["WS-101"]},
+    {"alert_id": "WA-03", "source_id": "E-1", "zone_id": "Z-E", "status": "CLOSED", "confirmed": true,
+     "affected_from": "2026-11-10T00:00:00Z", "affected_to": "2026-11-12T00:00:00Z",
+     "issued_by": "CMD-REGIONAL", "issued_at": "2026-11-10T09:00:00Z", "closed_at": "2026-11-14T09:00:00Z", "basis_sample_ids": ["WS-090"]},
+    {"alert_id": "WA-09", "source_id": "D-2", "zone_id": "Z-D", "status": "UNCONFIRMED", "confirmed": false,
+     "affected_from": "2026-11-19T00:00:00Z", "affected_to": "2026-11-20T00:00:00Z",
+     "issued_by": "CMD-REGIONAL", "issued_at": "2026-11-19T15:00:00Z", "basis_sample_ids": []}
+  ],
+  "samples": [
+    {"sample_id": "WS-090", "source_id": "E-1", "zone_id": "Z-E", "sampled_at": "2026-11-10T07:00:00Z", "value": 51.0, "unit": "zu/L",
+     "fictional_limit": 20.0, "result": "ABOVE_LIMIT", "provenance": "FIELD-LAB", "quality_flag": "OK"},
+    {"sample_id": "WS-101", "source_id": "W-3", "zone_id": "Z-W", "sampled_at": "2026-11-17T08:00:00Z", "value": 48.0, "unit": "zu/L",
+     "fictional_limit": 20.0, "result": "ABOVE_LIMIT", "provenance": "FIELD-LAB", "quality_flag": "OK"},
+    {"sample_id": "WS-121", "source_id": "W-3", "zone_id": "Z-W", "sampled_at": "2026-11-20T07:00:00Z", "value": 0.2, "unit": "zu/L",
+     "fictional_limit": 20.0, "result": "BELOW_LIMIT", "provenance": "FIELD-LAB", "quality_flag": "OK"},
+    {"sample_id": "WS-122", "source_id": "D-2", "zone_id": "Z-D", "sampled_at": "2026-11-19T13:00:00Z", "value": 30.0, "unit": "zu/L",
+     "fictional_limit": 20.0, "result": "ABOVE_LIMIT", "provenance": "VOLUNTEER-KIT", "quality_flag": "CONTAMINATED_CONTAINER"}
+  ]
+}

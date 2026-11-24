@@ -1,0 +1,38 @@
+{
+  "version": "v1",
+  "label": "FICTIONAL classroom data",
+  "zones": [
+    {"zone_id": "Z-A", "name": "Ashford"},
+    {"zone_id": "Z-B", "name": "Birchmoor"},
+    {"zone_id": "Z-C", "name": "Cinder Flats"},
+    {"zone_id": "Z-D", "name": "Dunmere"},
+    {"zone_id": "Z-E", "name": "Eastfen"},
+    {"zone_id": "Z-W", "name": "Willowbank"}
+  ],
+  "gates": [
+    {"gate_id": "G1", "connects": ["Z-A", "Z-D"]},
+    {"gate_id": "G2", "connects": ["Z-D", "Z-B"]},
+    {"gate_id": "G3", "connects": ["Z-E", "Z-A"]},
+    {"gate_id": "G4", "connects": ["Z-W", "Z-D"]},
+    {"gate_id": "G5", "connects": ["Z-A", "Z-C"]}
+  ],
+  "bulletins": [
+    {"bulletin_id": "BUL-041-v2", "version": 2, "issuer": "CMD-REGIONAL", "issued_at": "2026-11-18T06:00:00Z",
+     "valid_from": "2026-11-18T06:00:00Z", "valid_to": "2026-11-20T06:00:00Z", "superseded_by": "BUL-041-v3",
+     "zones": {"Z-A": {"travel": "OPEN", "escort_required": false}, "Z-B": {"travel": "OPEN", "escort_required": true},
+               "Z-C": {"travel": "OPEN", "escort_required": false}, "Z-D": {"travel": "OPEN", "escort_required": false},
+               "Z-E": {"travel": "OPEN", "escort_required": false}, "Z-W": {"travel": "OPEN", "escort_required": false}}},
+    {"bulletin_id": "BUL-041-v3", "version": 3, "issuer": "CMD-REGIONAL", "issued_at": "2026-11-20T06:00:00Z",
+     "valid_from": "2026-11-20T06:00:00Z", "valid_to": "2026-11-21T06:00:00Z", "superseded_by": null,
+     "zones": {"Z-A": {"travel": "OPEN", "escort_required": false}, "Z-B": {"travel": "OPEN", "escort_required": true},
+               "Z-C": {"travel": "CLOSED", "escort_required": false}, "Z-D": {"travel": "OPEN", "escort_required": false},
+               "Z-E": {"travel": "OPEN", "escort_required": false}, "Z-W": {"travel": "OPEN", "escort_required": false}}}
+  ],
+  "bulletin_issuers": ["CMD-REGIONAL"],
+  "pass_issuers": ["PASS-OFFICE-1"],
+  "clearance_officers": [
+    {"officer_id": "OFF-11", "name": "Officer M. Reyes (fictional)"},
+    {"officer_id": "OFF-12", "name": "Officer J. Lindqvist (fictional)"}
+  ],
+  "escorts": [{"escort_id": "ESC-3", "name": "Escort T. Mbeki (fictional)", "cert_valid_to": "2026-12-31T00:00:00Z"}]
+}
