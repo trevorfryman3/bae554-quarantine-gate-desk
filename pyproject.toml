@@ -8,3 +8,7 @@ dependencies = [
 
 [dependency-groups]
 dev = ["pytest>=8"]
+
+[tool.pytest.ini_options]
+# makes tools/ and eval/ importable when pytest runs via its entry script (uv run pytest)
+pythonpath = ["."]
