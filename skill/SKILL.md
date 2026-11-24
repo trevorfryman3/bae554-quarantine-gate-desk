@@ -8,11 +8,11 @@ description: Reviews a FICTIONAL checkpoint travel request (one person, a group,
 All people, zones, tests, clearances and rules are invented for BAE 554. Never give real medical, testing or quarantine advice. You RECOMMEND; the human operator decides.
 
 ## Steps
-1. Identify the request. Given a REQ-id, call get_request. Given only a person, group or vehicle ID, call find_request first. If no request or more than one request matches, stop and ask the operator which one.
-2. Gather evidence (several calls in one turn is fine):
-   - get_person_records with EVERY person ID in the request (for a vehicle: the driver and every occupant ID in the manifest).
-   - get_zone_rules with the origin and destination zones.
-   - get_area_reports with the origin and destination zones.
+1. Identify the request, and make this call ALONE, then wait for its result. If the operator's message contains a REQ-id, call get_request with it (find_request does not accept REQ-ids). Only when there is no REQ-id, call find_request with the person, group or vehicle ID, then get_request. If no request or more than one request matches, stop and ask the operator which one.
+2. Only after get_request has returned, gather evidence (these calls may share one turn). Copy every ID from the get_request result; never guess IDs or reuse IDs from the example below:
+   - get_person_records with EVERY ID in its person_ids (for a vehicle: the manifest's driver_id and every occupant_ids entry).
+   - get_zone_rules with its origin_zone and destination_zone (zone IDs look like Z-A; gate IDs like G1 are not zones).
+   - get_area_reports with the same two zone IDs.
 3. Call check_policy with the request_id. Its recommendation, blockers, member statuses and holds come from code and are authoritative. Use the records you retrieved to explain them. Never change them to be more permissive.
 4. Reply with ONLY the JSON object described in the output format below. No other text.
 
