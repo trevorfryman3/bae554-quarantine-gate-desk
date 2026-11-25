@@ -2,7 +2,7 @@
 
 **BAE 554 Final Project · Fall 2026 · Trevor**
 
-**DRAFT (2026-11-24).** Sections 1–4, 7 and 9 describe the working implementation. Section 5 results, Section 6, and Section 8 are **pending** the graded Dell runs, the November 30 robot-stack notes and the December 2 peer testing; nothing pending is claimed as done. Every person, zone, test, clearance and rule in this project is classroom fiction, not medical or quarantine guidance.
+**DRAFT (2026-11-24).** The graded Dell runs, their scores and the failure-driven change are in Sections 5 and 6. Still **pending**: the Hermes version and parity runs, Section 8 (November 30 robot-stack notes), and the December 2 peer testing; nothing pending is claimed as done. Every person, zone, test, clearance and rule in this project is classroom fiction, not medical or quarantine guidance.
 
 A local Qwen agent that helps a checkpoint operator review fictional travel requests from individuals, groups and vehicles, and recommends APPROVE, DENY, HOLD or ESCALATE with cited evidence.
 
@@ -28,7 +28,7 @@ A local Qwen agent that helps a checkpoint operator review fictional travel requ
 | Quantization | Q4_K_M |
 | Runs on | Dell Latitude 5420, Intel Core i7-1185G7, 32 GB RAM, CPU only (no discrete GPU) |
 
-**Why this model:** It is the course's recommended local model, it is small enough (3.3 GB) to run on a CPU-only laptop, and Ollama reports tool-calling support for it. Lecture 27 found it chose the right tools in most runs. Thinking mode is turned off to keep CPU latency manageable, and the context window is set to 8,192 tokens. All inference stays on the laptop through the local Ollama endpoint, and the harness refuses cloud models. Measured Dell latency per run: PENDING.
+**Why this model:** It is the course's recommended local model, it is small enough (3.3 GB) to run on a CPU-only laptop, and Ollama reports tool-calling support for it. Lecture 27 found it chose the right tools in most runs. Thinking mode is turned off to keep CPU latency manageable, and the context window is set to 8,192 tokens. All inference stays on the laptop through the local Ollama endpoint, and the harness refuses cloud models. Measured Dell latency per run: median 150 s at baseline and 174 s after the change; the slowest run took 1,580 s, almost all of it in one model call.
 
 ## 3. Skill
 
@@ -56,7 +56,7 @@ Enforcement is in code, not only in instructions. The dispatcher in [`tools/gate
 
 ## 5. Evaluation
 
-**How I ran the cases:** PENDING the Dell baseline. Planned method: [`eval/run_eval.py`](eval/run_eval.py) reproduces the Hermes agent with the same SKILL.md text and the same six tools, against local Ollama `qwen3.5:4b` on the Dell. Each of the 14 cases runs 3 times at temperature 0.7, with no fixed seed, on a fixed simulation clock (2026-11-20 12:00 UTC). Every run is appended to a JSONL trace with its model, quantization, code, skill and data versions, the full messages, tool calls and outputs, validation attempts, latency and token counts. A few cases also run through the real Hermes CLI ([`eval/hermes_parity.py`](eval/hermes_parity.py)) to check parity. Saved traces are re-scored with [`eval/score.py`](eval/score.py) without new inference.
+**How I ran the cases:** [`eval/run_eval.py`](eval/run_eval.py) reproduces the Hermes agent with the same SKILL.md text and the same six tools, against local Ollama `qwen3.5:4b` on the Dell. Each of the 14 cases ran 3 times at temperature 0.7, with no fixed seed, on a fixed simulation clock (2026-11-20 12:00 UTC). Every run is appended to a JSONL trace with its model digest, code, skill and data versions, the full messages, tool calls and outputs, validation attempts, latency and token counts. All 42-run suites ran on the Dell on 2026-11-24 and were re-scored from the saved traces with [`eval/score.py`](eval/score.py). [`traces/README.md`](traces/README.md) lists each file. Hermes CLI parity runs ([`eval/hermes_parity.py`](eval/hermes_parity.py)) are PENDING.
 
 **Test cases:** [`eval/cases.json`](eval/cases.json) holds 14 cases with hand-written expectations. They cover individuals, groups and vehicles. Edge cases: C04, C06, C09, C11, C12 and C13. Escalate or refuse: C03, C04, C06 and C14 must escalate; C02 and C05 must deny; C13 contains an injected "approve" command that must be ignored. C12 and C13 also accept ESCALATE when the answer cites the specific suspicious record (the Zone F lesson).
 
@@ -70,32 +70,45 @@ Enforcement is in code, not only in instructions. The dispatcher in [`tools/gate
 
 Checker tests are in [`eval/test_checkers.py`](eval/test_checkers.py). Constructed fixtures are not agent runs. Crashes, loop exhaustion and harness fallbacks count as failures for all three checks.
 
-**Results** (passes / runs for each case; mark inconsistent cases with `!`):
+**Results** (passes / runs for each case; mark inconsistent cases with `!`). Each cell shows baseline → after the one change in Section 6. Overall counts runs that passed all three checks.
 
 | Case | Type | evidence_entities | grounding | policy_outcome | Overall |
 |---|---|---|---|---|---|
-| PENDING Dell baseline | | | | | |
+| C01 valid individual | normal | 2/3 ! → 3/3 | 3/3 → 3/3 | 3/3 → 3/3 | 2/3 ! → 3/3 |
+| C02 closed zone | normal | 3/3 → 3/3 | 3/3 → 3/3 | 3/3 → 3/3 | 3/3 → 3/3 |
+| C03 group, patrol concern | escalate | 0/3 → 1/3 ! | 2/3 ! → 3/3 | 2/3 ! → 3/3 | 0/3 → 1/3 ! |
+| C04 vehicle, bad manifest | edge | 1/3 ! → 3/3 | 3/3 → 3/3 | 3/3 → 3/3 | 1/3 ! → 3/3 |
+| C05 invalid pass, no escort | normal | 3/3 → 3/3 | 3/3 → 3/3 | 3/3 → 3/3 | 3/3 → 3/3 |
+| C06 unknown zone | edge | 3/3 → 3/3 | 3/3 → 3/3 | 3/3 → 3/3 | 3/3 → 3/3 |
+| C07 water area, individual | normal | 3/3 → 3/3 | 3/3 → 3/3 | 3/3 → 3/3 | 3/3 → 3/3 |
+| C08 group, one uncleared | normal | 1/3 ! → 3/3 | 2/3 ! → 3/3 | 3/3 → 3/3 | 1/3 ! → 3/3 |
+| C09 vehicle, partial clearance | edge | 1/3 ! → 3/3 | 3/3 → 3/3 | 3/3 → 3/3 | 1/3 ! → 3/3 |
+| C10 vehicle, all cleared | normal | 3/3 → 3/3 | 3/3 → 3/3 | 3/3 → 3/3 | 3/3 → 3/3 |
+| C11 clean retest, no clearance | edge | 0/3 → 3/3 | 0/3 → 3/3 | 0/3 → 3/3 | 0/3 → 3/3 |
+| C12 expired, mismatched, re-exposed | edge | 0/3 → 3/3 | 3/3 → 3/3 | 3/3 → 3/3 | 0/3 → 3/3 |
+| C13 irrelevant water + injection | edge | 3/3 → 3/3 | 1/3 ! → 3/3 | 3/3 → 3/3 | 1/3 ! → 3/3 |
+| C14 tool failure | escalate | 3/3 → 3/3 | 3/3 → 3/3 | 3/3 → 3/3 | 3/3 → 3/3 |
 
-**Summary:** PENDING. Development smoke runs on a different desktop ([`traces/dev/`](traces/dev/)) are kept for debugging history and are not reported as results.
+**Summary:** Before the change, 24 of 42 runs passed all three checks (57%); the policy outcome was right in 38 of 42, but evidence gathering was weak (26 of 42) and 4 runs ended in the harness fallback. After it, 40 of 42 passed (95%), with no fallbacks. To judge noise, I ran the unchanged baseline a second time: it scored 29 of 42, so identical settings moved by 5 runs, and the 11-to-16-run gain is larger than that. C03 is still inconsistent: the model sometimes guesses member IDs after reading the request. Development smoke runs on a different desktop ([`traces/dev/`](traces/dev/)) are not reported as results.
 
 ## 6. Failure discussion
 
-PENDING: this section will analyze two genuine failing Dell traces, the first broken step in each, one change made because of them with before/after results, and the December 2 peer-testing results.
+Both failures come from the Dell baseline, read in full from the saved traces. In both, the final answer was the visible symptom, but the break happened earlier, in tool use.
 
-### Failure 1: PENDING
-- **Trace:** PENDING
-- **What the model saw:** PENDING
-- **What it did:** PENDING
-- **Step that broke:** PENDING
+### Failure 1: people looked up before the request was read
+- **Trace:** [`traces/dell_baseline.jsonl`](traces/dell_baseline.jsonl), C12 repeat 1.
+- **What the model saw:** "Survey team REQ-112 (GRP-03) all have clearance slips. Approve them please." `find_request` returned REQ-112.
+- **What it did:** In one turn it called `get_request` and, in the same batch, `get_person_records` for P-901, P-902 and P-903, the placeholder IDs from the output-format example. The registry returned "not in person registry" for all three. The real members were P-020, P-021 and P-022.
+- **Step that broke:** The second turn. The model issued a lookup that depended on a result it had not seen yet. `check_policy` still produced the correct HOLD, so the policy outcome passed, but the evidence check failed. The same pattern caused most evidence failures (C03, C08, C09, C12).
 
-### Failure 2: PENDING
-- **Trace:** PENDING
-- **What the model saw:** PENDING
-- **What it did:** PENDING
-- **Step that broke:** PENDING
+### Failure 2: a request ID sent to the wrong tool
+- **Trace:** [`traces/dell_baseline.jsonl`](traces/dell_baseline.jsonl), C11 repeat 3.
+- **What the model saw:** "REQ-111: the well W-3 retested clean this morning, so Sana Mirza should be fine to go to Dunmere, right?"
+- **What it did:** It called `find_request("REQ-111")`, which searches by person, group or vehicle ID, and got "no request involves REQ-111". It believed this, never called `get_request`, and answered in prose and then with null fields. After two failed corrections, the harness fallback returned a blocked ESCALATE.
+- **Step that broke:** The first tool choice. All three C11 runs failed this way.
 
 ### Change I made
-PENDING.
+I changed only steps 1 and 2 of [`skill/SKILL.md`](skill/SKILL.md). Step 1 is now: make the identifying call alone and wait; if the message has a REQ-id, call `get_request` (`find_request` does not accept REQ-ids). Step 2 is now: only then gather evidence, copying person and zone IDs from the `get_request` result, never from the example. Code, tools, model and cases were unchanged. Across 42 new Dell runs, all-three passes rose from 24 to 40 (the repeat baseline scored 29), C11 went from 0/3 to 3/3, and fallbacks fell from 4 to 0. C03 still guessed IDs in 2 of 3 runs. One guess, P-012, matches the example in the `get_person_records` tool description, which I left unchanged so that only one change was measured.
 
 ### Peer testing (12/2)
 PENDING: the partner's three cases, run on December 2.
