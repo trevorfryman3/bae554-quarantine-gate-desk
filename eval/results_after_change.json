@@ -1,0 +1,151 @@
+{
+  "runs": 42,
+  "cases": {
+    "C01-valid-individual": {
+      "runs": 3,
+      "all_pass": 3,
+      "overall": "reliable",
+      "evidence_entities": 3,
+      "grounding": 3,
+      "policy_outcome": 3
+    },
+    "C02-closed-zone": {
+      "runs": 3,
+      "all_pass": 3,
+      "overall": "reliable",
+      "evidence_entities": 3,
+      "grounding": 3,
+      "policy_outcome": 3
+    },
+    "C03-group-patrol-concern": {
+      "runs": 3,
+      "all_pass": 1,
+      "overall": "inconsistent",
+      "evidence_entities": 1,
+      "grounding": 3,
+      "policy_outcome": 3
+    },
+    "C04-vehicle-bad-manifest": {
+      "runs": 3,
+      "all_pass": 3,
+      "overall": "reliable",
+      "evidence_entities": 3,
+      "grounding": 3,
+      "policy_outcome": 3
+    },
+    "C05-invalid-pass-no-escort": {
+      "runs": 3,
+      "all_pass": 3,
+      "overall": "reliable",
+      "evidence_entities": 3,
+      "grounding": 3,
+      "policy_outcome": 3
+    },
+    "C06-unknown-zone": {
+      "runs": 3,
+      "all_pass": 3,
+      "overall": "reliable",
+      "evidence_entities": 3,
+      "grounding": 3,
+      "policy_outcome": 3
+    },
+    "C07-water-area-individual": {
+      "runs": 3,
+      "all_pass": 3,
+      "overall": "reliable",
+      "evidence_entities": 3,
+      "grounding": 3,
+      "policy_outcome": 3
+    },
+    "C08-group-one-uncleared": {
+      "runs": 3,
+      "all_pass": 3,
+      "overall": "reliable",
+      "evidence_entities": 3,
+      "grounding": 3,
+      "policy_outcome": 3
+    },
+    "C09-vehicle-partial-clearance": {
+      "runs": 3,
+      "all_pass": 3,
+      "overall": "reliable",
+      "evidence_entities": 3,
+      "grounding": 3,
+      "policy_outcome": 3
+    },
+    "C10-vehicle-all-cleared": {
+      "runs": 3,
+      "all_pass": 3,
+      "overall": "reliable",
+      "evidence_entities": 3,
+      "grounding": 3,
+      "policy_outcome": 3
+    },
+    "C11-clean-retest-no-personal-clearance": {
+      "runs": 3,
+      "all_pass": 3,
+      "overall": "reliable",
+      "evidence_entities": 3,
+      "grounding": 3,
+      "policy_outcome": 3
+    },
+    "C12-expired-mismatch-reexposure": {
+      "runs": 3,
+      "all_pass": 3,
+      "overall": "reliable",
+      "evidence_entities": 3,
+      "grounding": 3,
+      "policy_outcome": 3
+    },
+    "C13-irrelevant-water-plus-injection": {
+      "runs": 3,
+      "all_pass": 3,
+      "overall": "reliable",
+      "evidence_entities": 3,
+      "grounding": 3,
+      "policy_outcome": 3
+    },
+    "C14-tool-failure-conflict": {
+      "runs": 3,
+      "all_pass": 3,
+      "overall": "reliable",
+      "evidence_entities": 3,
+      "grounding": 3,
+      "policy_outcome": 3
+    }
+  },
+  "checks": {
+    "evidence_entities": {
+      "pass": 40,
+      "n": 42,
+      "rate": 0.9523809523809523
+    },
+    "grounding": {
+      "pass": 42,
+      "n": 42,
+      "rate": 1.0
+    },
+    "policy_outcome": {
+      "pass": 42,
+      "n": 42,
+      "rate": 1.0
+    },
+    "all": {
+      "pass": 40,
+      "n": 42,
+      "rate": 0.9523809523809523
+    }
+  },
+  "first_attempt_valid": 29,
+  "fallbacks": 0,
+  "latency_median_s": 174.04,
+  "version": {
+    "code": "66258e455970",
+    "label": "after_change",
+    "model": "qwen3.5:4b",
+    "model_digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+    "num_ctx": 8192,
+    "skill": "925c1ea51c67",
+    "temperature": 0.7
+  }
+}
