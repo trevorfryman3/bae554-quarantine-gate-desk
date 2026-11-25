@@ -33,8 +33,8 @@ uv run python eval/score.py traces/dell_baseline.jsonl --label baseline --json e
 If interrupted, run the same command again: finished (case, repeat) pairs are skipped.
 
 ## 4. Hermes setup and parity runs
-1. Copy `skill\` to `%LOCALAPPDATA%\hermes\skills\quarantine-gate-desk\`. On WSL/Linux, use `~/.hermes/skills/` instead.
-2. Merge `config/hermes_gate_desk.yaml` into the Hermes `config.yaml`. Replace `<REPO>` with this folder's full path.
+1. Copy `skill\` to `%LOCALAPPDATA%\hermes\skills\bae554\quarantine-gate-desk\` (Hermes v0.23 keeps skills as `skills\<category>\<name>\`).
+2. Add the MCP server: `uv run python config/merge_hermes_mcp.py "$env:LOCALAPPDATA\hermes\config.yaml"`. It backs up the config to `config.yaml.bak-bae554` and replaces any existing `mcp_servers` entry (a second key makes Hermes refuse the whole file). The model section already points at local Ollama on the Dell.
 3. Export a sanitized copy for the repository, then read it before committing:
 ```powershell
 uv run python config/export_sanitized.py "$env:LOCALAPPDATA\hermes\config.yaml"
